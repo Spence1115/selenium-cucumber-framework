@@ -1,0 +1,132 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.richardspenceley.tests</groupId>
+    <artifactId>selenium-cucumber-framework</artifactId>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
+    <name>Java, Cucumber, JUnit and Selenium Automation Test Framework</name>
+    <url>https://github.com/Spence1115/selenium-cucumber-framework</url>
+	<properties>
+    	<maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+        <build.number>${maven.build.timestamp}/${platform}/${platformVersion}/${browser}/${browserVersion}</build.number>
+        <reports.directory>${project.build.directory}/../reports/${build.number}</reports.directory>
+        <cucumber.tags>~@ignore</cucumber.tags>
+	</properties>
+    <dependencies>
+    	<dependency>
+        	<groupId>org.seleniumhq.selenium</groupId>
+        	<artifactId>selenium-java</artifactId>
+        	<version>2.48.2</version>
+   		</dependency>
+   		
+   		<dependency>
+    		<groupId>org.hamcrest</groupId>
+    		<artifactId>hamcrest-junit</artifactId>
+    		<version>2.0.0.0</version>
+		</dependency>
+
+   		<dependency>
+        	<groupId>org.seleniumhq.selenium</groupId>
+        	<artifactId>selenium-server</artifactId>
+        	<version>2.48.2</version>
+        	<scope>test</scope>
+    	</dependency>
+   		
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+		
+		<dependency>
+      		<groupId>com.google.guava</groupId>
+      		<artifactId>guava</artifactId>
+      		<version>16.0.1</version>
+    	</dependency>
+    </dependencies>
+
+<profiles>
+    <profile>
+        <id>read-properties</id>
+        <activation>
+            <file>
+                <exists>src/test/resources/config.properties</exists>
+            </file>
+        </activation>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>properties-maven-plugin</artifactId>
+                    <version>1.0-alpha-2</version>
+                    <executions>
+                        <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>src/test/resources/config.properties</file>
+                            </files>
+                        </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
+    <build>
+        <plugins>
+	        <plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-surefire-plugin</artifactId>
+        		<version>2.18.1</version>
+        		<configuration>
+          			<systemPropertyVariables>
+                        <cucumber.options>--tags ${cucumber.tags} --plugin html:${reports.directory}/html --plugin junit:${reports.directory}/junit.xml</cucumber.options>
+            			<browser>${browser}</browser>
+            			<browserVersion>${browserVersion}</browserVersion>
+                		<platform>${platform}</platform>
+                		<platformVersion>${platformVersion}</platformVersion>
+          			</systemPropertyVariables>
+          			<testFailureIgnore>true</testFailureIgnore>
+        		</configuration>
+      		</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <compilerArgument>-Werror</compilerArgument>
+                </configuration>
+            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.18.1</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
