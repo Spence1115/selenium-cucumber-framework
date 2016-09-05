@@ -15,12 +15,12 @@
         <cucumber.tags>~@ignore</cucumber.tags>
 	</properties>
     <dependencies>
-    	<dependency>
-        	<groupId>org.seleniumhq.selenium</groupId>
-        	<artifactId>selenium-java</artifactId>
-        	<version>2.48.2</version>
-   		</dependency>
-   		
+      <dependency>
+          <groupId>org.seleniumhq.selenium</groupId>
+          <artifactId>selenium-java</artifactId>
+          <version>3.0.0-beta3</version>
+      </dependency>  
+
    		<dependency>
     		<groupId>org.hamcrest</groupId>
     		<artifactId>hamcrest-junit</artifactId>
@@ -33,7 +33,7 @@
         	<version>2.48.2</version>
         	<scope>test</scope>
     	</dependency>
-   		
+
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
@@ -54,7 +54,7 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-		
+
 		<dependency>
       		<groupId>com.google.guava</groupId>
       		<artifactId>guava</artifactId>
