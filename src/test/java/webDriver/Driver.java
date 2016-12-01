@@ -2,6 +2,8 @@ package webDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -18,6 +20,7 @@ public class Driver {
 		
 		if (webdriver == null) {
 			webdriver = WebdriverFactory.createWebdriver();
+			webdriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}
 		return webdriver;
 	}
