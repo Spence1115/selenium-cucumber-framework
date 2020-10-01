@@ -93,11 +93,11 @@ Additonal platform choices can be added to the `platform.enum` file within the t
 
 ### Important Links
 
-[Official Website](http://selenium-grid.seleniumhq.org)
+[Official Website](https://www.selenium.dev/documentation/en/grid/)
 
 [Maven](https://maven.apache.org/)
 
-[ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/)
+[ChromeDriver](https://chromedriver.chromium.org/)
 
 [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
 
